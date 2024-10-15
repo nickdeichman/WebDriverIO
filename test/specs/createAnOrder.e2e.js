@@ -77,9 +77,7 @@ describe('Create an order', () => {
     const cardNumber = helper.getCreditCardNumber();
     const cardCode = helper.getCreditCardCode();
     await page.orderTaxi('Supportive', cardNumber, cardCode, 'Hello there');
-    const orderModal = await $(page.orderModal);
-    await orderModal.waitForDisplayed();
-    await expect(orderModal).toBeExisting();
+    await page.checkOrderModalInfo();
   });
 
   it('should display driver info after order was sent', async () => {
@@ -90,9 +88,10 @@ describe('Create an order', () => {
     const cardNumber = helper.getCreditCardNumber();
     const cardCode = helper.getCreditCardCode();
     await page.orderTaxi('Supportive', cardNumber, cardCode, 'Hello there');
-    const orderModal = await $(page.orderModal);
-    await orderModal.waitForDisplayed();
-    const isDriverInfoShown = await page.checkOrderModalInfo();
-    await expect(isDriverInfoShown).toBe(true);
+    await page.checkOrderModalInfo();
+    // eslint-disable-next-line wdio/no-pause
+    await browser.pause(41000);
+    const carPlateNumber = await $(page.carPlateNumber);
+    await expect(carPlateNumber).toBeExisting();
   });
 });

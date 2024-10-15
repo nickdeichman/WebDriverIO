@@ -30,6 +30,7 @@ module.exports = {
   // Fields
   iceCreamCounter: '.counter .counter-value',
   orderHeaderTitle: '.order-header-title',
+  carPlateNumber: '.order-number',
 
   // Modals
   phoneNumberModal: '.number-picker .modal',
@@ -153,14 +154,6 @@ module.exports = {
   checkOrderModalInfo: async function () {
     const orderModal = await $(this.orderModal);
     await orderModal.waitForDisplayed();
-    const orderButtons = await $('.order-buttons');
-    return await orderButtons.waitUntil(
-      async function () {
-        const childElements = await orderButtons.$$('.order-btn-group'); // Get all child div elements
-        const length = await childElements.length; // Get the length of child elements
-        return length === 3;
-      },
-      { timeout: 40000 }
-    );
+    await expect(orderModal).toBeExisting();
   },
 };
