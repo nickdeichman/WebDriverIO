@@ -14,19 +14,19 @@ This project automates end-to-end (e2e) tests for the Urban Routes application, 
 
 ## Techniques:
 * Page Object Model (POM)
-For example, in page.js, elements like fromField, toField, and phoneNumberField are encapsulated within a class to streamline their usage across different test cases.
+   For example, in page.js, elements like fromField, toField, and phoneNumberField are encapsulated within a class to streamline their usage across different test cases.
 
 * Network Request Interceptor
-For example, await browser.setupInterceptor(); starts intercepting requests, and const requests = await browser.getRequests(); collects and inspects them. In the case of our testing, this allows for the system to retrieve the verification code sent in order to verify the phone number.
+   For example, await browser.setupInterceptor(); starts intercepting requests, and const requests = await browser.getRequests(); collects and inspects them. In the case of our testing, this allows for the system to retrieve the verification code sent in order to verify the phone number.
 
 * Randomized Data Generation
-You can find the function for generating randomized data in the helper.js file of the project. For example, the getPhoneNumber function in helper.js creates new phone numbers for each test execution.
+   You can find the function for generating randomized data in the helper.js file of the project. For example, the getPhoneNumber function in helper.js creates new phone numbers for each test execution.
 
 * Element Visibility Checks
-For example, await $(this.callATaxiButton).waitForDisplayed(); ensures the button is visible before clicking it.
+   For example, await $(this.callATaxiButton).waitForDisplayed(); ensures the button is visible before clicking it.
 
 * Element Interaction
-For example, await $(this.nextButton).click(); simulates a user clicking the "Next" button.
+   For example, await $(this.nextButton).click(); simulates a user clicking the "Next" button.
 
 ## How to Run the Tests:
 
