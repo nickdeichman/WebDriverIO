@@ -92,6 +92,6 @@ describe('Create an order', () => {
     // eslint-disable-next-line wdio/no-pause
     await browser.pause(41000);
     const carPlateNumber = await $(page.carPlateNumber);
-    await expect(carPlateNumber).toBeExisting();
+    await expect(await carPlateNumber).toBeExisting();
   });
 });
