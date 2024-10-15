@@ -36,7 +36,7 @@ module.exports = {
   phoneNumberModal: '.number-picker .modal',
   paymentPickerModal: '.payment-picker .modal',
   addingCardModal: '.head=Adding a card',
-  orderModal: '.order.shown',
+  orderModal: '.order-header-content',
 
   // Functions
   selectTaxiPlan: async function (plan) {
