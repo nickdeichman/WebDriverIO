@@ -2,10 +2,22 @@ const page = require('../../page');
 // eslint-disable-next-line no-unused-vars
 const helper = require('../../helper');
 
+const fromFieldValue = 'East 2nd Street, 601';
+const toFieldValue = '1300 1st St';
+
 describe('Create an order', () => {
+  it('should set the address', async () => {
+    await browser.url(`/`);
+    const fromField = await $(page.fromField);
+    const toField = await $(page.toField);
+    await page.fillAddresses(fromFieldValue, toFieldValue);
+    await expect(await fromField.getValue()).toBe(fromFieldValue);
+    await expect(await toField.getValue()).toBe(toFieldValue);
+  });
+
   it('should open phone number modal', async () => {
     await browser.url(`/`);
-    await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+    await page.fillAddresses(fromFieldValue, toFieldValue);
     const phoneNumberButton = await $(page.phoneNumberButton);
     await phoneNumberButton.waitForDisplayed();
     await phoneNumberButton.click();
@@ -49,6 +61,7 @@ describe('Create an order', () => {
     await page.orderIceCream(2);
     await expect(await iceCreamCounter.getText()).toContain('2');
   });
+
   it('should add comment to the driver', async () => {
     await browser.url(`/`);
     await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
@@ -58,6 +71,7 @@ describe('Create an order', () => {
     await page.fillCommentToDriver(message);
     await expect(await commentField.getValue()).toBe(message);
   });
+
   it('should order a blanket and handkerchiefs', async () => {
     await browser.url(`/`);
     await page.fillAddresses('East 2nd Street, 601', '1300 1st St');

@@ -29,14 +29,13 @@ module.exports = {
 
   // Fields
   iceCreamCounter: '.counter .counter-value',
-  orderHeaderTitle: '.order-header-title',
   carPlateNumber: '.order-number',
 
   // Modals
   phoneNumberModal: '.number-picker .modal',
   paymentPickerModal: '.payment-picker .modal',
   addingCardModal: '.head=Adding a card',
-  orderModal: '.order-header-content',
+  orderModal: '.order-body',
 
   // Functions
   selectTaxiPlan: async function (plan) {
@@ -154,6 +153,6 @@ module.exports = {
   checkOrderModalInfo: async function () {
     const orderModal = await $(this.orderModal);
     await orderModal.waitForDisplayed();
-    await expect(orderModal).toBeExisting();
+    await expect(await orderModal).toBeExisting();
   },
 };
