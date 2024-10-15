@@ -82,7 +82,7 @@ describe('Create an order', () => {
   //   await expect(await orderModal.isExisting()).toBe(true);
   // });
 
-  it('should display order info after order was sent', async () => {
+  it('should display driver info after order was sent', async () => {
     await browser.url(`/`);
     await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
     const phoneNumber = helper.getPhoneNumber('+1');
@@ -92,6 +92,7 @@ describe('Create an order', () => {
     await page.orderTaxi('Supportive', cardNumber, cardCode, 'Hello there');
     const orderModal = await $(page.orderModal);
     await orderModal.waitForDisplayed();
-    await page.checkOrderModalInfo();
+    const isDriverInfoShown = await page.checkOrderModalInfo();
+    await expect(isDriverInfoShown).toBe(true);
   });
 });

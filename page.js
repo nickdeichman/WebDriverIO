@@ -29,6 +29,7 @@ module.exports = {
 
   // Fields
   iceCreamCounter: '.counter .counter-value',
+  orderHeaderTitle: '.order-header-title',
 
   // Modals
   phoneNumberModal: '.number-picker .modal',
@@ -150,10 +151,16 @@ module.exports = {
   },
 
   checkOrderModalInfo: async function () {
-    // eslint-disable-next-line no-unused-vars
     const orderModal = await $(this.orderModal);
-    await browser.waitUntil(() => {
-      // return orderModal.isDisplayed() && await $('order-header-title').get
-    })
+    await orderModal.waitForDisplayed();
+    const orderButtons = await $('.order-buttons');
+    return await orderButtons.waitUntil(
+      async function () {
+        const childElements = await orderButtons.$$('.order-btn-group'); // Get all child div elements
+        const length = await childElements.length; // Get the length of child elements
+        return length === 3;
+      },
+      { timeout: 40000 }
+    );
   },
 };
