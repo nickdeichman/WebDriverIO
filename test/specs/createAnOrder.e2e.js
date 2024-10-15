@@ -79,7 +79,7 @@ describe('Create an order', () => {
     await page.orderTaxi('Supportive', cardNumber, cardCode, 'Hello there');
     const orderModal = await $(page.orderModal);
     await orderModal.waitForDisplayed();
-    await expect(await orderModal.isExisting()).toBe(true);
+    await expect(orderModal).toBeExisting();
   });
 
   it('should display driver info after order was sent', async () => {
