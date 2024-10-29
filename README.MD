@@ -10,6 +10,7 @@ This project automates end-to-end (e2e) tests for the Urban Routes application, 
 * Testing Framework: WebDriverIO
 * JavaScript: Used to write the automated test scripts
 * Mocha
+* Node.js
 
 ## Techniques:
 * Page Object Model (POM)
